@@ -36,11 +36,12 @@ class App extends Component {
     render() {
         return (
             <div>
+                <h1>Todo List</h1>
                 <form onSubmit={this.onSubmit}>
                     <input required value={this.state.input} onChange={this.onChange} />
                     <button>Add Task</button>
                 </form>
-                <TodoList removeTodo={this.removeTodo} items={this.state.items}/>
+            <TodoList removeTodo={this.removeTodo} items={this.state.items}/>
             </div>
         )
     }
