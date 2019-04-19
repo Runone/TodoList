@@ -10,6 +10,7 @@ class App extends Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.removeTodo = this.removeTodo.bind(this);
     }
 
     onChange = (event) => {
@@ -24,6 +25,14 @@ class App extends Component {
         })
     };
 
+    removeTodo(index) {
+        let { items } = this.state;
+        items.splice(index, 1);
+        this.setState({
+            items: items
+        })
+    }
+
     render() {
         return (
             <div>
@@ -31,7 +40,7 @@ class App extends Component {
                     <input required value={this.state.input} onChange={this.onChange} />
                     <button>Add Task</button>
                 </form>
-                <TodoList items={this.state.items}/>
+                <TodoList removeTodo={this.removeTodo} items={this.state.items}/>
             </div>
         )
     }
