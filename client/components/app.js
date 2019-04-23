@@ -13,16 +13,22 @@ class App extends Component {
         this.removeTodo = this.removeTodo.bind(this);
     }
 
+
     onChange = (event) => {
         this.setState({input: event.target.value})
     };
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            input: '',
-            items: [...this.state.items, this.state.input]
-        })
+        let newItem = {
+            id: Date.now(),
+            input: this.state.input,
+        };
+        this.setState((oldState) => ({
+             items: oldState.items.concat(newItem),
+             input: ''
+            }
+        ));
     };
 
     removeTodo(index) {
@@ -31,7 +37,7 @@ class App extends Component {
         this.setState({
             items: items
         })
-    }
+    };
 
     render() {
         return (
@@ -41,7 +47,7 @@ class App extends Component {
                     <input required value={this.state.input} onChange={this.onChange} />
                     <button>Add Task</button>
                 </form>
-            <TodoList removeTodo={this.removeTodo} items={this.state.items}/>
+            <TodoList removeTodo={this.removeTodo} items={this.state.items} markItemCompleted={this.markItemCompleted}/>
             </div>
         )
     }

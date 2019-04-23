@@ -1,0 +1,4 @@
+input:checked + label {
+    color: #999;
+    text-decoration: line-through;
+}
